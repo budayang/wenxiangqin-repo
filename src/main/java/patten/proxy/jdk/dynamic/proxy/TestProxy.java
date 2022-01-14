@@ -15,5 +15,6 @@ public class TestProxy {
     public static void main(String[] args) {
         IHello proxyInstance = (IHello) Proxy.newProxyInstance(IHello.class.getClassLoader(), new Class[]{IHello.class}, new MyInvocationHandler(new HelloImpl()));
         proxyInstance.sayHello();
+        System.out.println("test");
     }
 }
