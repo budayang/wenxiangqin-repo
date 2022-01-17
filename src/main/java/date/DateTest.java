@@ -42,5 +42,7 @@ public class DateTest {
         DateTime dateTime1 = new DateTime(dateStr);
         Date date = dateTime1.plusDays(1).withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).toDate();
         System.out.println(date);
+
+        //test
     }
 }
