@@ -65,9 +65,26 @@ public class Algorithm {
       ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    public static boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        int yushu = 0;
+        int shang = x;
+        int sum = 0;
+        while (shang != 0) {
+            yushu = shang % 10;
+            sum = sum * 10 + yushu;
+            shang = shang / 10;
+        }
+        return sum == x;
+    }
+
     public static void main(String[] args) {
-        int[] nums = new int[] {0,0,3,2};
-        dominantIndex(nums);
+//        int[] nums = new int[] {0,0,3,2};
+//        dominantIndex(nums);
+        System.out.println(isPalindrome(122));
+
     }
 
 }
