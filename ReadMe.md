@@ -1,5 +1,34 @@
-# `循环依赖`
+Bean 生命周期：
+总结：
+1、实例化、
+2、属性赋值、
+3、初始化（涉及了 Aware、BeanPostProcessor、InitializingBean、init-method 的概念）、
+4、销毁
 
+
+1、Spring 中提供的 Aware 接口有：
+    1.1、BeanNameAware：注入当前 bean 对应 beanName；
+    1.2、BeanClassLoaderAware：注入加载当前 bean 的 ClassLoader；
+    1.3、BeanFactoryAware：注入 当前BeanFactory容器 的引用。
+
+2、BeanPostProcessor
+    BeanPostProcessor 是 Spring 为修改 bean提供的强大扩展点，其可作用于容器中所有 bean，其定义如下：
+    public interface BeanPostProcessor { 
+    // 初始化前置处理 default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException { return bean; } 
+    // 初始化后置处理 default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException { return bean; } }
+    2.1、对于标记接口的实现类，进行自定义处理。
+    2.2、为当前对象提供代理实现。例如 Spring AOP 功能，生成对象的代理类，然后返回。
+
+3、InitializingBean 和 init-method
+    InitializingBean 和 init-method 是 Spring 为 bean 初始化提供的扩展点。
+    InitializingBean接口 的定义如下：
+    public interface InitializingBean { void afterPropertiesSet() throws Exception; } 复制代码
+    在 afterPropertiesSet() 方法写初始化逻辑。
+    指定 init-method 方法，指定初始化方法
+
+4、DisposableBean接口，执行销毁destory方法、destory-method方法
+
+# `循环依赖`
 bServiceBean的生命周期
 循环依赖--->提前进行AOP
 0、creatingSet<'BService'>
